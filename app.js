@@ -10,6 +10,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var holaMundo = require('./routes/holaMundo')
 var readFileSystem = require('./routes/readFileSystem')
+var configResponse = require('./routes/configResponse')
 
 var app = express();
 
@@ -35,6 +36,7 @@ app.use('/', index);
 app.use('/users', users);
 app.use('/hello', holaMundo);
 app.use('/read', readFileSystem);
+app.use('/response', configResponse);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
