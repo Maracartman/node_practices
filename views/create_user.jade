@@ -1,0 +1,21 @@
+extends layout
+
+block content
+    h1 Creación de Usuario para administración de Backend NodeJs.
+    h3(id="adminHelp",class="form-text text-muted") Esta plataforma es para ADMINISTRADORES
+    br
+    form(action="/api/private/users/create",method="POST")
+        div(class="form-group")
+            label(for="username") Username
+            input(type="text",name="username",placeholder="Username",id="username",class="form-control" )
+        div(class="form-group")
+            label(for="email") Email
+            input(type="text",name="email",placeholder="Email",id="email",class="form-control" )
+            small(id="emailHelp",class="form-text text-muted") We'll never share your email with anyone else.
+        div(class="form-group")
+            label(for="password") Password
+                input(type="password",name="password",placeholder="Password",id="password",class="form-control" )
+        div(class="form-group")
+            label(for="conf_password") Confirmar Contraseña
+                input(type="password",name="conf_password",placeholder="Confirm password",id="conf_password",class="form-control")
+        button(type="submit",class="btn btn-primary") Enviar

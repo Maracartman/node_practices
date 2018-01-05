@@ -1,12 +1,15 @@
 extends layout
 
 block content
-    form(action="/users",method="POST")
+    h1 Sistema de gestión de Backend NodeJs.
+    h3(id="adminHelp",class="form-text text-muted") Esta plataforma es para ADMINISTRADORES
+    br
+    form(action="/api/private/users",method="POST")
             div(class="form-group")
                 label(for="email") Email
                 input(type="text",name="email",placeholder="Email",id="email",class="form-control")
                 small(id="emailHelp",class="form-text text-muted") We'll never share your email with anyone else.
             div(class="form-group")
                 label(for="password") Password
-                    input(type="password",name="password",placeholder="Email",id="password",class="form-control")
-            button(type="submit",class="btn btn-primary") Loggear
+                    input(type="password",name="password",placeholder="Password",id="password",class="form-control")
+            button(type="submit",class="btn btn-primary") Enviar

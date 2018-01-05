@@ -12,6 +12,8 @@ var holaMundo = require('./routes/holaMundo')
 var readFileSystem = require('./routes/readFileSystem')
 var configResponse = require('./routes/configResponse')
 var parameter = require('./routes/parameter')
+var security = require('./middlewares/ApiSecurity')
+var nextStep = require('./routes/nextStep')
 
 var app = express();
 
@@ -34,11 +36,26 @@ app.use(sassMiddleware({
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
-app.use('/users', users);
+app.use('/login',users);
+
+/*app.use('/users', users);
 app.use('/hello', holaMundo);
 app.use('/read', readFileSystem);
 app.use('/parameter', parameter);
 app.use('/response', configResponse);
+//Capture all request via Security to nextStep
+app.use('/security',security,nextStep);*/
+
+/**
+ * Definicion de ruta API
+ * */
+app.use('/api',security);
+
+/**
+ * Public own CDN
+ * */
+app.use("/cdn",express.static('public'));
+
 
 
 // catch 404 and forward to error handler
