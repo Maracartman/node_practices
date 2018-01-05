@@ -4,9 +4,10 @@ var app = express();
 var routerProvider = require('../routes/provider/routerProvider')
 
 
-app.use('/:type/:function', function (req, res) {
+app.use('/:type/:function', function (req, res,next) {
     if (req.params.type === 'private') {
         if (true) {
+            // next();
             routerProvider.routes.private[req.params.function](req, res);
         } else {
             res.writeHead(200, {'Content-type': 'application/json'});

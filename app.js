@@ -8,12 +8,10 @@ var sassMiddleware = require('node-sass-middleware');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
-var holaMundo = require('./routes/holaMundo')
-var readFileSystem = require('./routes/readFileSystem')
-var configResponse = require('./routes/configResponse')
-var parameter = require('./routes/parameter')
 var security = require('./middlewares/ApiSecurity')
-var nextStep = require('./routes/nextStep')
+
+var session = require('express-session');
+
 
 var app = express();
 
@@ -22,7 +20,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+app.use(favicon(path.join(__dirname, 'public', 'fav.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -37,7 +35,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', index);
 app.use('/login',users);
-
 /*app.use('/users', users);
 app.use('/hello', holaMundo);
 app.use('/read', readFileSystem);
@@ -45,7 +42,6 @@ app.use('/parameter', parameter);
 app.use('/response', configResponse);
 //Capture all request via Security to nextStep
 app.use('/security',security,nextStep);*/
-
 /**
  * Definicion de ruta API
  * */
@@ -55,6 +51,15 @@ app.use('/api',security);
  * Public own CDN
  * */
 app.use("/cdn",express.static('public'));
+
+/**
+ * Session config
+ * */
+app.use(session({
+    secret: "123aawdsggfasfda456",
+    resave: false,
+    saveUnitialized: false
+}));
 
 
 

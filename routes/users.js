@@ -9,12 +9,9 @@ router.get('/', function (req, res, next) {
 });
 
 router.post('/', function (req, res) {
-    /*User.find({email:req.body.email,password:req.body.password},"username email",function (err,docs) {
-        if(err) res.write('Error')
-        res.send('Logged with username ' + docs.username);
-    })*/
     User.findOne({email:req.body.email,password:req.body.password},"username email",function (err,docs) {
         if(err) res.send(err)
+        // req.session.user_id = res._id;
         res.send('Logged with username ' + docs.username);
     })
 })
