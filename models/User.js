@@ -1,6 +1,5 @@
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
-mongoose.connect('mongodb://localhost/node_practice');
+var Schema = require('../providers/database.connection.provider').scheme;
+var mongoose = require('../providers/database.connection.provider').mongoose;
 
 var posibles_valores = ["M","F"];
 
