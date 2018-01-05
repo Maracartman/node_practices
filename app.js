@@ -12,6 +12,8 @@ var security = require('./middlewares/ApiSecurity')
 
 var session = require('express-session');
 
+var helmet = require('helmet');
+
 
 var app = express();
 
@@ -33,6 +35,10 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Security
+app.use(helmet());
+
+// Routing
 app.use('/', index);
 app.use('/login',users);
 /*app.use('/users', users);
@@ -58,7 +64,7 @@ app.use("/cdn",express.static('public'));
 app.use(session({
     secret: "123aawdsggfasfda456",
     resave: false,
-    saveUnitialized: false
+    saveUninitialized: false
 }));
 
 
