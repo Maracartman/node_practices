@@ -7,7 +7,6 @@ var routerProvider = require('../routes/provider/routerProvider')
 app.use('/:type/:function', function (req, res,next) {
     if (req.params.type === 'private') {
         if (true) {
-            // next();
             routerProvider.routes.private[req.params.function](req, res);
         } else {
             res.writeHead(200, {'Content-type': 'application/json'});
@@ -26,9 +25,5 @@ app.use('/:type/:function', function (req, res,next) {
     }
 
 });
-
-/*app.use('/public/:function',function (req,res) {
-    routerProvider.routes[req.params.function](req,res);
-});*/
 
 module.exports = app;
